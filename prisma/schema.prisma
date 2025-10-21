@@ -16,6 +16,7 @@ model User {
   password String
   credentials Credential[]
   creaAt DateTime @default(now())
+ 
 
   @@map("users")
 }
