@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { User } from "generated/prisma";
 import usersServices from "services/users.services";
 import httpStatus from "http-status";
 
@@ -13,7 +12,7 @@ res.status(httpStatus).send("User created successfully");
 async function signIn(req: Request, res: Response) {
     const logginEmail = req.body.email
     const logginPassword = req.body.password;
-        
+
 
     const token = await usersServices.findUsers(logginEmail, logginPassword);
     res.status(httpStatus.OK).json({  token  });
