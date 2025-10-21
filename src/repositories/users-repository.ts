@@ -1,8 +1,5 @@
 import  prisma  from "../config/database";
 
-
-
-
 async function createNewUser({name, email, password}: {name: string, email: string, password: string}) {
     const newUser =await prisma.users.create({
         data: {
