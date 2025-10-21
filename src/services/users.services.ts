@@ -1,4 +1,4 @@
-import usersRepository from "repositories/users-repository";
+import usersRepository from "../repositories/users-repository";
 
 
 async function createNewUser({name, email, password}: {name: string, email: string, password: string}) {  

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import usersServices from "services/users.services";
+import usersServices from "../services/users.services";
 import httpStatus from "http-status";
 
 
