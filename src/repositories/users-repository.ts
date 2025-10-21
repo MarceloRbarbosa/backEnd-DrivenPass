@@ -1,7 +1,7 @@
 import  prisma  from "../config/database";
 
 async function createNewUser({name, email, password}: {name: string, email: string, password: string}) {
-    const newUser =await prisma.users.create({
+    const newUser =await prisma.user.create({
         data: {
             name,
             email, 
@@ -13,13 +13,13 @@ async function createNewUser({name, email, password}: {name: string, email: stri
 }
 
 async function findAllUser() {
-    const users = await prisma.users.findMany();
+    const users = await prisma.user.findMany();
 
     return users;
 }
 
 async function findUserByEmail(email: string) {
-    const user = await prisma.users.findUnique({
+    const user = await prisma.user.findUnique({
         where: {
             email
         }
@@ -29,7 +29,7 @@ async function findUserByEmail(email: string) {
 }
 
 async function UpdateUser(name: string, email: string, password: string) {
-    const user = await prisma.users.update({
+    const user = await prisma.user.update({
         where: {
             email
         },
@@ -41,7 +41,7 @@ async function UpdateUser(name: string, email: string, password: string) {
 }
 
 async function DeleteUser(email: string) {
-    const user = await prisma.users.delete({
+    const user = await prisma.user.delete({
         where: {
             email
         }
