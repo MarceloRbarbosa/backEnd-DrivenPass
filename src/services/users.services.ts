@@ -11,8 +11,6 @@ async function createNewUser({name, email, password}: {name: string, email: stri
     };
     return newUser;
 }
-
-
 const usersServices = {
     createNewUser
 }
