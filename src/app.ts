@@ -2,7 +2,7 @@ import express, {json} from "express";
 import chalk from "chalk";
 import dotenv from "dotenv";
 import routers from "./routes/index-routers";
-import errorHandler from "./middlewares/error-handler";
+import errorHandler from "./middlewares/error-handle-middleware";
 
 dotenv.config();
 
