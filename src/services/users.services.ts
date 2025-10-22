@@ -31,7 +31,7 @@ async function findUsers(email: string, password: string) {
 
     const passwordMatch = await bcrypt.compare(password, user.password)
     if (!passwordMatch) throw { 
-        type: "NOT_FOUND",
+        type: "unauthorized",
         message: "Invalid Password"
     };
 

@@ -8,6 +8,7 @@ export default function errorHandler(err: Error, req: Request, res: Response, ne
     if(error.type === "NOT_FOUND") return res.status(httpStatus.NOT_FOUND).send(err.message);
     if (error.type === "conflict") return res.status(httpStatus.CONFLICT).send(err.message);
     if (error.type === "unprocessable_entity") return res.status(httpStatus.UNPROCESSABLE_ENTITY).send(err.message);
+    if (error.type === "unauthorized") return res.status(httpStatus.UNAUTHORIZED).send(err.message);
     
     res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
 }
