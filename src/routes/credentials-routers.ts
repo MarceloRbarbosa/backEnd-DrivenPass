@@ -3,7 +3,7 @@ import credentialsController from "../controllers/credentials-controller";
 import { validateSchema } from "../middlewares/validate-schema-middleare";
 import  credentialsSchema from "../schemas/credentials-schema";
 import { validateParamId } from "../middlewares/paramsValue-validate-middleware";
-import { authenticateToken } from "middlewares/token-middleware";
+import { authenticateToken } from "../middlewares/token-middleware";
 
 
 
