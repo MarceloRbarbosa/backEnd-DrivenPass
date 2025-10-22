@@ -163,7 +163,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -172,8 +171,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id          Int          @id @default(autoincrement())\n  name        String\n  email       String       @unique\n  password    String\n  credentials Credential[]\n  creaAt      DateTime     @default(now())\n\n  @@map(\"users\")\n}\n\nmodel Credential {\n  id       Int    @id @default(autoincrement())\n  title    String\n  url      String @unique\n  username String\n  password String\n\n  user   User @relation(fields: [userId], references: [id])\n  userId Int\n\n  @@map(\"credentials\")\n}\n",
-  "inlineSchemaHash": "229b341b522b1b3a5ae653d1a59c51cc07fd812ae465c9080d4ced00e541b0a6",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id          Int          @id @default(autoincrement())\n  name        String\n  email       String       @unique\n  password    String\n  credentials Credential[]\n  creaAt      DateTime     @default(now())\n\n  @@map(\"users\")\n}\n\nmodel Credential {\n  id       Int    @id @default(autoincrement())\n  title    String\n  url      String @unique\n  username String\n  password String\n\n  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)\n  userId Int\n\n  @@map(\"credentials\")\n}\n",
+  "inlineSchemaHash": "d3cbe8a146b2173c782d27679f7e80adaaeb575e82ccbb87a7d4b3a6b42be14e",
   "copyEngine": true
 }
 config.dirname = '/'
