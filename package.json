@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "ts-node-dev src/app.ts",
     "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "npm run migration:run && npm run seed && node dist/src/app.js",
+    "migration:run": "prisma migrate deploy",
+    "seed": "prisma db seed"
   },
   "repository": {
     "type": "git",

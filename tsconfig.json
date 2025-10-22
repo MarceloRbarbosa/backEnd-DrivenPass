@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "module": "CommonJS",
     "moduleResolution": "Node",
+    "target": "es2021",
     "baseUrl": "src"
   },
   "ts-node": {
