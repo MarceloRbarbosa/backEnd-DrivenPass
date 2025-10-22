@@ -1,4 +1,6 @@
 import usersRepository from "../repositories/users-repository";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 
 async function createNewUser({name, email, password}: {name: string, email: string, password: string}) {  
@@ -8,7 +10,12 @@ async function createNewUser({name, email, password}: {name: string, email: stri
         message: "Email already exists"
     };
     
-    const newUser = await usersRepository.createNewUser({name, email, password});
+    const passwordHash = await bcrypt.hash(password, 10);
+    const newUser = await usersRepository.createNewUser({
+        name, 
+        email, 
+        password: passwordHash
+    });
     
     return newUser;
 }
@@ -22,7 +29,18 @@ async function findUsers(email: string, password: string) {
         message: "User not found"
     };
 
-    return user;
+    const passwordMatch = await bcrypt.compare(password, user.password)
+    if (!passwordMatch) throw { 
+        type: "NOT_FOUND",
+        message: "Invalid Password"
+    };
+
+    const token = jwt.sign(
+        { id: user.id },
+         process.env.JWT_SECRET as string,
+        { expiresIn: "5d" });
+
+    return token;
 }
 
 const usersServices = {
