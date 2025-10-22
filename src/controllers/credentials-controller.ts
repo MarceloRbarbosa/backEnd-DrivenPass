@@ -28,10 +28,17 @@ async function updateCredential(req: Request, res: Response) {
     return res.status(httpStatus.OK).send("Credential updated successfully");
 }
 
+async function deleteCredential(req: Request, res: Response) {
+    const credentialId = Number(req.params.id);
+    await credentialsServices.deleteCredential(credentialId);
+    res.status(httpStatus.OK).send("Credential deleted successfully");
+}
+
 const credentialsController = {
     createCredentials,
     getCredentials,
-    updateCredential
+    updateCredential,
+    deleteCredential
 }
 
 export default credentialsController;

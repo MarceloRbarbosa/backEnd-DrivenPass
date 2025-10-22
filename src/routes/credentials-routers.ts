@@ -12,6 +12,6 @@ const credentialsRouter = Router();
 credentialsRouter.post("/credentials",authenticateToken, validateSchema(credentialsSchema), credentialsController.createCredentials);
 credentialsRouter.get("/credentials",authenticateToken, credentialsController.getCredentials);
 credentialsRouter.put("/credentials/:id",authenticateToken,validateParamId("id"), validateSchema(credentialsSchema), credentialsController.updateCredential);
-
+credentialsRouter.delete("/credentials/:id",authenticateToken,validateParamId("id"), credentialsController.deleteCredential);
 
 export default credentialsRouter

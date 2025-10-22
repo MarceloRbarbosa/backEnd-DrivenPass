@@ -17,10 +17,18 @@ async function signIn(req: Request, res: Response) {
     res.status(httpStatus.OK).json({  token  });
 }
 
+async function deleteUser(req: Request, res: Response) {
+    const userId = (req as any).userId
+    await usersServices.deleteUser(userId);
+    res.status(httpStatus.OK).send("User deleted successfully");
+    
+}
+
 
 const userController = {
     signUp,
-    signIn
+    signIn,
+    deleteUser
 }
 
 export default userController

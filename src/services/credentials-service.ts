@@ -40,12 +40,19 @@ async function updateCredential(data: {
     return result
     }
 
-
+async function deleteCredential(id: number) {
+    const result = await credentialsRepository.deleteCredential(id);
+    if(!result) throw {
+        type: "NOT_FOUND",
+        message: "Credential not found"
+    };
+}
 const credentialsService = {
     createCredentials,
     findAllCredentials,
     findCredentialById,
     updateCredential,
+    deleteCredential
 }
 
 export default credentialsService;

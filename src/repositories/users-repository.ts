@@ -28,6 +28,15 @@ async function findUserByEmail(email: string) {
     return user;
 }
 
+async function findUserById(id:number) {
+    const user = await prisma.user.findUnique({
+        where: {
+            id
+        }
+    });
+    return user
+}
+
 async function UpdateUser(name: string, email: string, password: string) {
     const user = await prisma.user.update({
         where: {
@@ -40,18 +49,20 @@ async function UpdateUser(name: string, email: string, password: string) {
     })
 }
 
-async function DeleteUser(email: string) {
+async function DeleteUser(id: number) {
     const user = await prisma.user.delete({
         where: {
-            email
+            id
         }
     })
+    return user
 }
 
 const usersRepository = {
     createNewUser,
     findAllUser,
     findUserByEmail,
+    findUserById,
     UpdateUser,
     DeleteUser
 }

@@ -43,9 +43,20 @@ async function findUsers(email: string, password: string) {
     return token;
 }
 
+async function deleteUser(userId: number) {
+    const user = await usersRepository.findUserById(userId);
+    if(!user) throw {
+        type: "NOT_FOUND",
+        message: "User not found"
+    } 
+    
+    await usersRepository.DeleteUser(userId);
+}
+
 const usersServices = {
     createNewUser,
-    findUsers
+    findUsers,
+    deleteUser
 }
 
 export default usersServices;
