@@ -24,7 +24,7 @@ model User {
 model Credential {
   id Int @id @default(autoincrement())
   title String 
-  url String @unique
+  url String 
   username  String
   password  String
 

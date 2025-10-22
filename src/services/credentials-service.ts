@@ -1,6 +1,9 @@
 import credentialsRepository from "../repositories/credentials-repository";
 
+
 async function createCredentials({title, url, username, password, userId}: {title: string, url: string, username: string, password: string, userId: number}) {
+    
+    
     const conflict = await credentialsRepository.findCredentialByTittle(title);
     if (conflict && conflict.userId === userId) throw { 
         type: "conflict",
