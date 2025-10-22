@@ -28,7 +28,7 @@ async function updateCredential(req: Request, res: Response) {
         id: credentialId, userId, title, url, username, password 
     });
     
-    return res.status(httpStatus.OK).send("Credential updated successfully");
+    return res.status(httpStatus.NO_CONTENT).send("Credential updated successfully");
 }
 
 async function deleteCredential(req: Request, res: Response) {

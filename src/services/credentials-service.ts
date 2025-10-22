@@ -32,11 +32,19 @@ async function updateCredential(data: {
   username?: string,
   password?: string
 }) {
+
+    const conflict = await credentialsRepository.findCredentialByTittle(data.title);
+    if (conflict && conflict.userId === data.userId) throw { 
+        type: "conflict",
+        message: "Title already exists"
+    };
+
     const result = await credentialsRepository.updateCredential(data);
     if(result.count === 0) throw {
         type: "NOT_FOUND",
         message: "Credential not found"
     };
+
     return result
     }
 
