@@ -22,9 +22,9 @@ async function createCredentials({title, url, username, password, userId}: {titl
     return newCredential;
 }
 
-async function findAllCredentials() {      
-    const credentials = await credentialsRepository.findAllCredentials()
-    
+async function findAllCredentials(userId: number) {
+     
+    const credentials = await credentialsRepository.findAllCredentialsByUserId(userId);
     return credentials;
 }
 

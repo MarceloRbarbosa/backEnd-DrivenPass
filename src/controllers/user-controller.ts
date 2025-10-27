@@ -5,8 +5,12 @@ import httpStatus from "http-status";
 
 async function signUp(req: Request, res: Response) {
 const newUser = req.body;
-await usersServices.createNewUser(newUser);
-res.status(httpStatus.CREATED).send("User created successfully");
+const user = await usersServices.createNewUser(newUser);
+res.status(httpStatus.CREATED).send({
+    message: "User created successfully",
+    id: user.id,
+    email: user.email});
+
 }
 
 async function signIn(req: Request, res: Response) {

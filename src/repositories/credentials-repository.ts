@@ -14,8 +14,10 @@ async function createCredentials({title, url, username, password, userId}: {titl
      return newCredential;
 }
 
-async function findAllCredentials() {
-    const credentials = await prisma.credential.findMany();
+async function findAllCredentialsByUserId(userId: number) {
+    const credentials = await prisma.credential.findMany({
+        where:{ userId}
+    });
 
     return credentials;
 }
@@ -72,7 +74,7 @@ async function deleteCredential(id: number) {
 
 const credentialsRepository = {
     createCredentials,
-    findAllCredentials,
+    findAllCredentialsByUserId,
     findCredentialById,
     findCredentialByTittle,
     updateCredential,
